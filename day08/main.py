@@ -1,9 +1,7 @@
 from os.path import dirname, realpath
-from typing import List
-from collections import Counter
 
 
-def part1(data: List[dict]) -> int:
+def part1(data: list[dict]) -> int:
     known_segment_counts = [
         7, # 8
         3, # 7
@@ -23,7 +21,7 @@ def sort_word(word: str) -> str:
 def remove_chars(word: str, chars: str) -> str:
     return word.translate(str.maketrans('', '', chars))
 
-def decode_signal(signal: List[str]) -> dict:
+def decode_signal(signal: list[dict]) -> dict:
     number_to_code = {
         1: sort_word(signal[0]),
         7: sort_word(signal[1]),
@@ -53,7 +51,7 @@ def decode_signal(signal: List[str]) -> dict:
             raise Exception(f"cannot decode {word = }, unexpected lenght")
     return {code: number for number, code in number_to_code.items()}
 
-def part2(data: List[int]) -> int:
+def part2(data: list[int]) -> int:
     """ decode by checking segment lenght difference between known numbers
     (because of their lenght, part 1). Reference:
           dddd
