@@ -1,6 +1,5 @@
 from os.path import dirname, realpath
 from typing import List
-from collections import Counter
 
 
 def part1(data: List[int]) -> int:
@@ -9,9 +8,9 @@ def part1(data: List[int]) -> int:
         total = 0
         for crab in data:
             total += abs(crab - i)
-        
+
         totals[i] = total
-        
+
     return totals[min(totals, key=totals.get)]
 
 
@@ -23,7 +22,7 @@ def part2(data: List[int]) -> int:
             distance = abs(crab - i)
             # 1 + 2 + 3 + n... let's get serious! series?
             total += int(distance * (distance + 1) / 2)
-        
+
         totals[i] = total
 
     return totals[min(totals, key=totals.get)]
