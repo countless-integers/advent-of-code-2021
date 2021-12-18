@@ -1,0 +1,40 @@
+#!/usr/bin/env python3
+
+import os
+from pathlib import Path
+
+latest = [dir for dir in os.listdir('.') if dir.startswith('day')].pop()
+
+new_day = int(latest.replace('day', '')) + 1
+
+new_dir = f"day{new_day:02}"
+os.mkdir(new_dir)
+
+with open(f"{new_dir}/main.py", 'w') as m:
+    m.write("""from os.path import dirname, realpath
+
+
+def part1():
+    pass
+
+
+def part2():
+    pass
+
+
+if __name__ == "__main__":
+    dir_path = dirname(realpath(__file__))
+    for file_name in ["test_input.txt", "input.txt"]:
+    # for file_name in ["input.txt"]:
+    # for file_name in ["test_input.txt"]:
+        with open(f"{dir_path}/{file_name}") as input_file:
+            data = [[int(numeric) for numeric in list(line.strip())] for line in input_file]
+            print(f"part1: {file_name}: {part1(data)}")
+            #print(f"part2: {file_name}: {part2(data)}")
+    """)
+
+Path(f"{new_dir}/input.txt").touch()
+Path(f"{new_dir}/test_input.txt").touch()
+Path(f"{new_dir}/puzzle.md").touch()
+
+print(f"\N{rocket} You can start coding in {new_dir}/main.py")
