@@ -5,7 +5,7 @@ from collections import Counter
 def part1(polymer_template: str, pair_insertion_rules: dict[str: str], steps=10) -> int:
     pairs = Counter()
     for i in range(0, len(polymer_template) - 1):
-        pairs[polymer_template[i] + polymer_template[i + 1]] = 1
+        pairs[polymer_template[i] + polymer_template[i + 1]] += 1
 
     while steps:
         updated_pairs = Counter()
@@ -19,10 +19,9 @@ def part1(polymer_template: str, pair_insertion_rules: dict[str: str], steps=10)
     for pair, count in pairs.items():
         letter_count[pair[0]] += count
 
-    # correct off-by-one
+    # the count of the last character that never has anything added after it
+    # because chars only get added inbetween characters
     letter_count[polymer_template[-1]] += 1
-
-    print(letter_count)
 
     return max(letter_count.values()) - min(letter_count.values())
 
@@ -50,4 +49,3 @@ if __name__ == "__main__":
                     polymer_template = line
 
             print(f"part1: {file_name}: {part1(polymer_template, pair_insertion_rules)}")
-    
