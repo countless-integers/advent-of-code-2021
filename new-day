@@ -3,11 +3,9 @@
 import os
 from pathlib import Path
 
-latest = [dir for dir in os.listdir('.') if dir.startswith('day')].pop()
+latest = max([int(dir.replace('day', '')) for dir in os.listdir('.') if dir.startswith('day')])
 
-new_day = int(latest.replace('day', '')) + 1
-
-new_dir = f"day{new_day:02}"
+new_dir = f"day{latest + 1:02}"
 os.mkdir(new_dir)
 
 with open(f"{new_dir}/main.py", 'w') as m:
