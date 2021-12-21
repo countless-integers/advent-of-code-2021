@@ -2,7 +2,7 @@ from os.path import dirname, realpath
 from collections import Counter
 
 
-def part1(polymer_template: str, pair_insertion_rules: dict[str: str], steps=10) -> int:
+def transform(polymer_template: str, pair_insertion_rules: dict[str: str], steps=10) -> int:
     pairs = Counter()
     for i in range(0, len(polymer_template) - 1):
         pairs[polymer_template[i] + polymer_template[i + 1]] += 1
@@ -26,10 +26,6 @@ def part1(polymer_template: str, pair_insertion_rules: dict[str: str], steps=10)
     return max(letter_count.values()) - min(letter_count.values())
 
 
-def part2():
-    pass
-
-
 if __name__ == "__main__":
     dir_path = dirname(realpath(__file__))
     for file_name in ["test_input.txt", "input.txt"]:
@@ -48,4 +44,5 @@ if __name__ == "__main__":
                 else:
                     polymer_template = line
 
-            print(f"part1: {file_name}: {part1(polymer_template, pair_insertion_rules)}")
+            print(f"part1: {file_name}: {transform(polymer_template, pair_insertion_rules)}")
+            print(f"part2: {file_name}: {transform(polymer_template, pair_insertion_rules, 40)}")
